@@ -1,15 +1,16 @@
 package kr.eddymango.exercisefam.data
 
-import android.content.Context
-import android.content.SharedPreferences
+import android.app.Application
 
-class MysharedPreferences(context: Context) {
+class MysharedPreferences:Application() {
 
-    val PREFS_FILENAME = "prefs"
-    val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
+    companion object{
+        lateinit var prefs:PreferenceUtil
 
+    }
 
-
-
-
+    override fun onCreate() {
+        prefs = PreferenceUtil(applicationContext)
+        super.onCreate()
+    }
 }

@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Exercisefam">
+        android:theme="@style/Theme.Exercisefam"
+        android:name=".data.MysharedPreferences">
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
