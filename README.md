@@ -7,4 +7,4 @@
 
 
 
-https://user-images.githubusercontent.com/94836715/177746019-4840266c-bc1c-44f9-a99a-9217f9f62973.gif
+![splashActivity](https://user-images.githubusercontent.com/94836715/177746908-8b2b4bfa-32cf-4223-bf77-95cf4e1b5b75.gif)
