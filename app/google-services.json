@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "702705122915",
+    "project_id": "exercisefam-18033",
+    "storage_bucket": "exercisefam-18033.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702705122915:android:4ee4329fd6862f7d1f8256",
+        "android_client_info": {
+          "package_name": "kr.eddymango.exercisefam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702705122915-o4bavin408tbsnbcq3uqge5r61phsije.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOJuYXidedFX2OknXM-qBzn7J0PO6BHLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702705122915-o4bavin408tbsnbcq3uqge5r61phsije.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
