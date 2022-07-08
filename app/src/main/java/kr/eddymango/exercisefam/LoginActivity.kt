@@ -40,9 +40,9 @@ class LoginActivity : AppCompatActivity() {
                 prefs.setString("name",name)
                 Log.d(TAG, "loginMode : ${prefs.getBoolean("loginMode",false)}")
 
-                myRef.child(name).child(name).setValue(name)
-                myRef.child(name).child(pwd).setValue(pwd)
-                myRef.child(name).child(phone).setValue(phone)
+                myRef.child(name).child("name").setValue(name)
+                myRef.child(name).child("pwd").setValue(pwd)
+                myRef.child(name).child("phone").setValue(phone)
 
 
                 Toast.makeText(this@LoginActivity,"환영합니다",Toast.LENGTH_SHORT).show()

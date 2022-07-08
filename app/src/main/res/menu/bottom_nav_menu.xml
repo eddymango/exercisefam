@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/familyFragment"
+        android:title="가족"
+        android:icon="@drawable/ic_family"
+        />
+    <item
+        android:id="@+id/homeFragment"
+        android:title="홈"
+
+        android:icon="@drawable/ic_home"
+        />
+
+    <item
+        android:id="@+id/infoFragment"
+        android:title="내 정보"
+        android:icon="@drawable/ic_account"
+
+        />
+
+</menu>
