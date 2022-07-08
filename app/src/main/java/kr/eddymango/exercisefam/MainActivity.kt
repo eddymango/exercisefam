@@ -31,12 +31,13 @@ class MainActivity : AppCompatActivity() {
 
             var loginMode = prefs.getBoolean("loginMode",false)
             Log.d(TAG, "loginMode value : $loginMode" )
-
+            //최초 로그인 x
             if(loginMode){
                 val intent = Intent(this,HomeActivity::class.java)
                 startActivity(intent)
                 finish()
             }
+            // 최초 로그인 o
             else{
                 val intent = Intent(this,LoginActivity::class.java)
                 startActivity(intent)

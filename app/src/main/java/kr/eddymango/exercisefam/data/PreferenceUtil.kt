@@ -10,8 +10,8 @@ class PreferenceUtil(context:Context) {
     fun getString(key:String, defValue:String):String{
         return prefs.getString(key,defValue).toString()
     }
-    fun getBoolean(key:String,bln:Boolean): Boolean {
-        return prefs.getBoolean(key,bln)
+    fun getBoolean(key:String,defValue:Boolean): Boolean {
+        return prefs.getBoolean(key,defValue)
     }
 
     fun setString(key:String,str:String){
@@ -20,6 +20,7 @@ class PreferenceUtil(context:Context) {
     fun setBoolean(key:String,bln:Boolean){
         prefs.edit().putBoolean(key,bln).apply()
     }
+
 
 
 }
