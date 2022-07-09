@@ -10,12 +10,14 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kr.eddymango.exercisefam.data.MysharedPreferences.Companion.prefs
 import kr.eddymango.exercisefam.databinding.FragmentHomeBinding
 
 class HomeFragment :Fragment(){
 
     private var mbinding: FragmentHomeBinding? =null
     private val binding get() = mbinding!!
+    private val userName = prefs.getString("name","")
     val TAG = "TAG"
 
     val database = Firebase.database("https://exercisefam-18033-default-rtdb.asia-southeast1.firebasedatabase.app")
@@ -33,7 +35,8 @@ class HomeFragment :Fragment(){
             //i = 년도 -- i2 = 월 --- i3 = 일
             Toast.makeText(activity,"Selected Date : $i3/$i2/$i",Toast.LENGTH_SHORT).show()
             binding.homeBtnDbRegister.setOnClickListener {
-                myRef.child("$i").child("${i2+1}").child("$i3").setValue("안녕하세요")
+                myRef.child("$i").child("${i2+1}").child("$i3")
+                    .child("$userName").setValue("운동량 입력입니다.")
             }
 
         }
