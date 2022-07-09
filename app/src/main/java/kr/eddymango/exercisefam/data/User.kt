@@ -6,7 +6,11 @@ data class User (
     var loginMode:Boolean = false,
     var userName:String?= null,
     var password:String? = null,
-    var userPhoneNum:String? = null
+    var userPhoneNum:String? = null,
+    //최초 몸무게 저장 -> 일별 몸무게 비교 그래프
+    var userWeight:Double?=null
+
+
 )
 
 

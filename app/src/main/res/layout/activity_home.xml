@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
     android:orientation="vertical"
-    android:layout_weight="1">
+    android:layout_weight="1"
+    android:background="@color/white">
 
     <!--  프래그먼트들이 보여질 컨테이너뷰 -->
     <androidx.fragment.app.FragmentContainerView
