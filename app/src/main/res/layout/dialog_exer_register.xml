@@ -32,14 +32,14 @@
         android:id="@+id/dialog_btn_ok"
         app:layout_constraintTop_toBottomOf="@id/dialog_et_count"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/dialog_btn_no"/>
+        app:layout_constraintEnd_toStartOf="@id/dialog_btn_no"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="취소"
         android:id="@+id/dialog_btn_no"
         app:layout_constraintTop_toBottomOf="@id/dialog_et_count"
-        app:layout_constraintStart_toStartOf="@id/dialog_btn_ok"
+        app:layout_constraintStart_toEndOf="@id/dialog_btn_ok"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 

@@ -2,6 +2,7 @@ package kr.eddymango.exercisefam.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.style.TtsSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.model.content.ShapeTrimPath
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kr.eddymango.exercisefam.R
@@ -24,10 +28,12 @@ class HomeFragment :Fragment(){
     private var mbinding: FragmentHomeBinding? =null
     private val binding get() = mbinding!!
     private val userName = prefs.getString("name","")
-    val TAG = "TAG"
+    val TAG1 = "TAG"
 
     val database = Firebase.database("https://exercisefam-18033-default-rtdb.asia-southeast1.firebasedatabase.app")
     val myRef: DatabaseReference = database.getReference("Calendar")
+    val moneyRef: DatabaseReference = database.getReference("Money")
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,14 +41,45 @@ class HomeFragment :Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-        mbinding = FragmentHomeBinding.inflate(inflater,container,false)
+        mbinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        var day:String
-        var month:String
-        var year:String
+        var day: String
+        var month: String
+        var year: String
+
+        var totalMoney = "0"
+        var userTotalMoney ="0"
+
+        binding.homeTvUserName.text = "${userName}님 환영합니다."
+
+        moneyRef.child("Total").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                totalMoney = snapshot.value.toString()
+                Log.d(TAG1, "onDataChange: ${snapshot.value}")
+                Log.d(TAG1, "onDataChange: ${totalMoney}")
+                binding.homeTvTotalmoney.text = "현재 총 누적 금액 : ${totalMoney}원 입니다."
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
 
 
+        moneyRef.child(userName).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userTotalMoney = snapshot.value.toString()
+                binding.homeTvUsertotalmoney.text = "${userName}님의 현재까지 누적 금액 : ${userTotalMoney}원 입니다."
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
 
         binding.homeCalView.setOnDateChangeListener{ calendarView, i,i2,i3 ->
@@ -60,13 +97,20 @@ class HomeFragment :Fragment(){
 
                     alertDialog.findViewById<Button>(R.id.dialog_btn_ok).setOnClickListener {
                         var exerCount = alertDialog.findViewById<EditText>(R.id.dialog_et_count).getText().toString()
-                        Log.d(TAG, "exercount : $exerCount")
+                        Log.d(TAG1, "exercount : $exerCount")
 
                         myRef.child(year).child(month).child(day)
                             .child(userName).child("count").setValue(exerCount)
 
-                        myRef.child(year).child(month).child(day)
-                            .child(userName).child("money").setValue("${exerCount.toInt()*10}")
+                        moneyRef.child(userName).setValue("${userTotalMoney.toInt() + exerCount.toInt()*10}").toString()
+                        Log.d(TAG1, "$userTotalMoney")
+                        moneyRef.child("Total").setValue("${totalMoney.toInt() + exerCount.toInt()*10}")
+                        Log.d(TAG1, "onCreateView: userTotalMoney : $userTotalMoney")
+
+
+                        alertDialog.dismiss()
+                    }
+                    alertDialog.findViewById<Button>(R.id.dialog_btn_no).setOnClickListener {
 
                         alertDialog.dismiss()
 
@@ -75,7 +119,8 @@ class HomeFragment :Fragment(){
 
 
 
-                }
+
+                    }
 
 
 

@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     val TAG = "TAG"
     val database = Firebase.database("https://exercisefam-18033-default-rtdb.asia-southeast1.firebasedatabase.app")
     val myRef:DatabaseReference = database.getReference("User")
+    val moneyRef: DatabaseReference = database.getReference("Money")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
                 myRef.child(name).child("phone").setValue(phone)
                 myRef.child(name).child("weight").setValue(weight)
 
+                moneyRef.child(name).setValue("0")
 
                 Toast.makeText(this@LoginActivity,"환영합니다",Toast.LENGTH_SHORT).show()
 
