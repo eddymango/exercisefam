@@ -32,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
                 val name = loginEtName.text.toString()
                 val pwd = loginEtPwd.text.toString()
                 val phone = loginEtPhone.text.toString()
+                val weight = loginEtWeight.text.toString()
+
                 if(name ==""||pwd==""){
                     Toast.makeText(this@LoginActivity,"이름 또는 비밀번호를 입력하지 않았습니다",Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -43,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
                 myRef.child(name).child("name").setValue(name)
                 myRef.child(name).child("pwd").setValue(pwd)
                 myRef.child(name).child("phone").setValue(phone)
+                myRef.child(name).child("weight").setValue(weight)
 
 
                 Toast.makeText(this@LoginActivity,"환영합니다",Toast.LENGTH_SHORT).show()
