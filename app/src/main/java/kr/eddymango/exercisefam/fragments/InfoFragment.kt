@@ -1,5 +1,6 @@
 package kr.eddymango.exercisefam.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,8 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -40,9 +47,6 @@ class InfoFragment :Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentInfoBinding.inflate(inflater, container,false)
-        val lineChart: LineChart =binding.infoLineChart
-
-        val entry = ArrayList<Entry>()
 
         weightRef.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -58,19 +62,23 @@ class InfoFragment :Fragment(){
                 TODO("Not yet implemented")
             }
         })
-//
-//        for (i in dataList.indices){
-//            entry.add(Entry())
-//        }
 
-
-
-
-
-        lineChart.run {
+        val entries = ArrayList<Entry>()
+        for (data in dataList.indices){
+            entries.add(Entry(weightList[data].toFloat(),dataList[data].toInt()))
+        }
+        val dataSet = LineDataSet(entries,"").apply {
+            setDrawCircles(false)
+            color = Color.RED
+            highLightColor = Color.TRANSPARENT
+            valueTextSize = 0F
+            lineWidth = 1.5F
 
         }
+        val lineData = LineData(dataSet)
+        binding.infoLineChart.run{
 
+        }
 
 
         return binding.root
