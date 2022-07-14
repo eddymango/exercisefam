@@ -33,6 +33,8 @@ class HomeFragment :Fragment(){
     val database = Firebase.database("https://exercisefam-18033-default-rtdb.asia-southeast1.firebasedatabase.app")
     val myRef: DatabaseReference = database.getReference("Calendar")
     val moneyRef: DatabaseReference = database.getReference("Money")
+    val weightRef: DatabaseReference = database.getReference("Weight")
+
 
 
     override fun onCreateView(
@@ -97,13 +99,19 @@ class HomeFragment :Fragment(){
 
                     alertDialog.findViewById<Button>(R.id.dialog_btn_ok).setOnClickListener {
                         var exerCount = alertDialog.findViewById<EditText>(R.id.dialog_et_count).getText().toString()
+                        var userWeight = alertDialog.findViewById<EditText>(R.id.dialog_et_weight).getText().toString()
+
                         Log.d(TAG1, "exercount : $exerCount")
 
                         myRef.child(year).child(month).child(day)
                             .child(userName).child("count").setValue(exerCount)
 
                         moneyRef.child(userName).setValue("${userTotalMoney.toInt() + exerCount.toInt()*10}").toString()
+
+                        weightRef.child(userName).child(year+month+day).setValue(userWeight)
                         Log.d(TAG1, "$userTotalMoney")
+
+
                         moneyRef.child("Total").setValue("${totalMoney.toInt() + exerCount.toInt()*10}")
                         Log.d(TAG1, "onCreateView: userTotalMoney : $userTotalMoney")
 
@@ -132,8 +140,8 @@ class HomeFragment :Fragment(){
     }
 
     override fun onDestroyView() {
-        mbinding = null
         super.onDestroyView()
+        mbinding = null
 
     }
 

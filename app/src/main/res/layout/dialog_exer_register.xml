@@ -16,6 +16,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dialog_et_count"
         android:text="name 님의 x년x월x일 "/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialog_et_weight"
+        android:hint="몸무게를 입력하세요"
+        app:layout_constraintTop_toBottomOf="@id/dialog_tv_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <EditText
         android:id="@+id/dialog_et_count"
@@ -24,7 +33,7 @@
         android:hint="운동량을 입력하세요!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dialog_tv_name" />
+        app:layout_constraintTop_toBottomOf="@id/dialog_et_weight" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
